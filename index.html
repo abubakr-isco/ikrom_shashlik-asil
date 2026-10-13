@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ikrom Shashlik — шашлык на углях в Самарканде</title>
+  <meta name="description" content="Шашлык на живых углях, плов и горячие блюда. Доставка и самовывоз по Самарканду, бронь столов. Каждый день с 10:00 до 05:00.">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph: превью ссылки в Telegram и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ikrom Shashlik — шашлык на углях в Самарканде">
+  <meta property="og:description" content="Доставка, самовывоз и бронь столов. Каждый день с 10:00 до 05:00.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=1200&h=630&fit=crop&q=70">
+
+  <!-- Сразу помечаем, что JS работает: от этого зависят анимации появления -->
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+
+  <!-- Шрифт: Manrope поддерживает и кириллицу, и узбекскую латиницу -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <!-- Первый экран грузим с высоким приоритетом (влияет на LCP) -->
+  <link rel="preload" as="image" fetchpriority="high"
+        href="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=1280&q=70&fm=webp"
+        imagesrcset="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&q=70&fm=webp 800w,
+                     https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=1280&q=70&fm=webp 1280w,
+                     https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=1920&q=70&fm=webp 1920w"
+        imagesizes="100vw">
+
+  <!-- Tailwind через CDN — для быстрой проверки. В продакшне собрать через Tailwind CLI (см. README) -->
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            graphite: '#0B0B0C', // фон страницы
+            surface: '#161618',  // карточки и панели
+            raised: '#1E1E21',   // элементы поверх карточек
+            ink: '#F5F2EC',      // основной светлый текст
+            gold: { DEFAULT: '#FFB703', deep: '#FB8500' },
+          },
+          fontFamily: {
+            sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          transitionTimingFunction: {
+            premium: 'cubic-bezier(0.4, 0, 0.2, 1)',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body class="bg-graphite font-sans text-ink antialiased">
+
+  <!-- ======================================================================
+       SVG-спрайт: логотип и иконки. Подключаются через <use href="#…">
+       ====================================================================== -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="gold-gradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#FFB703" />
+        <stop offset="1" stop-color="#FB8500" />
+      </linearGradient>
+    </defs>
+
+    <!-- Купольный знак: ребристый купол самаркандского мавзолея -->
+    <symbol id="logo-dome" viewBox="0 0 48 48">
+      <path d="M24 3.5v5" stroke="url(#gold-gradient)" stroke-width="1.75" stroke-linecap="round" fill="none" />
+      <circle cx="24" cy="3.5" r="1.75" fill="url(#gold-gradient)" />
+      <path d="M11 27c-3.2-8.2 2.6-15 13-17.5 10.4 2.5 16.2 9.3 13 17.5z" fill="url(#gold-gradient)" />
+      <path d="M24 9.5c-3 4.6-4.2 11-3.6 17.5M24 9.5c3 4.6 4.2 11 3.6 17.5M24 9.5c-6.6 2.8-9.6 9.6-8.4 17.5M24 9.5c6.6 2.8 9.6 9.6 8.4 17.5"
+            stroke="#0B0B0C" stroke-opacity=".55" stroke-width="1.1" fill="none" />
+      <rect x="12" y="28.5" width="24" height="7.5" rx="1" fill="url(#gold-gradient)" />
+      <path d="M17 36v-3.2a1.5 1.5 0 0 1 3 0V36zM22.5 36v-3.2a1.5 1.5 0 0 1 3 0V36zM28 36v-3.2a1.5 1.5 0 0 1 3 0V36z" fill="#0B0B0C" fill-opacity=".6" />
+      <rect x="8" y="37.5" width="32" height="3" rx="1.5" fill="url(#gold-gradient)" />
+    </symbol>
+
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9z" /><path d="M9 10V7a3 3 0 0 1 6 0v3" /></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" /></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z" /><circle cx="12" cy="9.5" r="2.5" /></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M21 16.5v3a1.5 1.5 0 0 1-1.6 1.5A18 18 0 0 1 3 4.6 1.5 1.5 0 0 1 4.5 3h3a1.5 1.5 0 0 1 1.5 1.3c.1 1 .4 2 .7 2.9a1.5 1.5 0 0 1-.3 1.6L8 10.2a14 14 0 0 0 5.8 5.8l1.4-1.4a1.5 1.5 0 0 1 1.6-.3c.9.3 1.9.6 2.9.7a1.5 1.5 0 0 1 1.3 1.5z" /></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" /></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" /></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7" /></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20a7 7 0 0 1-1.2-13.9C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z" /><path d="M2 21c0-3 1.9-5.4 5.1-6 2.4-.5 4.9-2 5.9-3" /></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4.1 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z" /></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z" /></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z" /><path d="M3 8l9 5 9-5M12 13v8" /></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" /><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" /></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.5 6.5h.01" /></symbol>
+    <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M21 4L3 11l6 2.5M21 4l-3 16-9-6.5M21 4L9 13.5V19l3-3.5" /></symbol>
+  </svg>
+
+  <a href="#menu" class="skip-link" data-i18n="a11y.skip">Перейти к меню</a>
+
+  <!-- ======================================================================
+       ШАПКА
+       Прозрачная поверх первого экрана, при прокрутке получает фон.
+       ====================================================================== -->
+  <header id="site-header" class="site-header fixed inset-x-0 top-0 z-40">
+    <div class="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 md:px-8">
+
+      <!-- Логотип -->
+      <a href="#top" class="logo flex shrink-0 items-center gap-2" data-i18n-aria="nav.home" aria-label="Ikrom Shashlik, на главную">
+        <svg class="h-10 w-10" aria-hidden="true"><use href="#logo-dome" /></svg>
+        <span class="flex flex-col leading-none">
+          <span class="text-lg font-extrabold tracking-tight">Ikrom</span>
+          <span class="logo__sub gold-text">Shashlik</span>
+        </span>
+      </a>
+
+      <!-- Навигация (десктоп) -->
+      <nav class="ml-8 hidden items-center gap-8 lg:flex" data-i18n-aria="nav.main" aria-label="Основная навигация">
+        <a href="#menu" class="nav-link" data-i18n="nav.menu">Меню</a>
+        <a href="#about" class="nav-link" data-i18n="nav.about">О нас</a>
+        <a href="#contacts" class="nav-link" data-i18n="nav.contacts">Контакты</a>
+      </nav>
+
+      <div class="ml-auto flex items-center gap-2 md:gap-4">
+        <a href="tel:+998660000000" class="nav-link hidden items-center gap-2 xl:inline-flex" data-phone-link>
+          <svg class="icon h-5 w-5 text-gold" aria-hidden="true"><use href="#i-phone" /></svg>
+          <span data-phone-text>+998 66 000 00 00</span>
+        </a>
+
+        <!-- Переключатель языка -->
+        <div class="lang-switch" role="group" data-i18n-aria="lang.label" aria-label="Язык сайта">
+          <button type="button" class="lang-switch__btn" data-action="set-lang" data-lang="uz" aria-pressed="false" data-i18n-aria="lang.uz" aria-label="O‘zbekcha">UZ</button>
+          <button type="button" class="lang-switch__btn" data-action="set-lang" data-lang="ru" aria-pressed="true" data-i18n-aria="lang.ru" aria-label="Русский">RU</button>
+        </div>
+
+        <button type="button" class="btn btn-gold h-10 px-4 text-sm" data-action="open-booking">
+          <span class="md:hidden" data-i18n="header.bookShort">Бронь</span>
+          <span class="hidden md:inline" data-i18n="header.book">Забронировать</span>
+        </button>
+
+        <!-- Корзина (десктоп; на телефоне — в нижнем баре) -->
+        <button type="button" class="header-cart hidden md:inline-flex" data-action="open-cart" data-i18n-aria="header.cart" aria-label="Открыть корзину">
+          <span class="relative">
+            <svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-bag" /></svg>
+            <span class="cart-badge" data-cart-count hidden>0</span>
+          </span>
+          <span class="hidden text-sm font-bold lg:inline" data-cart-total hidden></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ====================================================================
+         ПЕРВЫЙ ЭКРАН (HERO)
+         Фото на весь экран, оффер и две кнопки. На телефоне контент прижат
+         к низу — кнопки попадают в зону большого пальца.
+         ==================================================================== -->
+    <section class="hero relative isolate flex min-h-[100svh] items-end overflow-hidden" aria-labelledby="hero-title">
+      <!--
+        Чтобы поставить видео вместо фото, замените <img> на:
+        <video class="hero__media" autoplay muted loop playsinline poster="assets/img/hero.webp">
+          <source src="assets/video/hero.mp4" type="video/mp4">
+        </video>
+      -->
+      <img class="hero__media"
+           src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=1280&q=70&fm=webp"
+           srcset="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&q=70&fm=webp 800w,
+                   https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=1280&q=70&fm=webp 1280w,
+                   https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=1920&q=70&fm=webp 1920w"
+           sizes="100vw" width="1920" height="1173" alt="" fetchpriority="high">
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="embers" id="embers" aria-hidden="true"></div>
+
+      <div class="mx-auto w-full max-w-7xl px-4 pb-24 pt-32 md:px-8 md:pb-24 lg:pb-32">
+        <div class="max-w-3xl">
+          <p class="status-pill hero-rise" style="--delay: 0ms" data-open-status>
+            <span class="status-pill__dot" aria-hidden="true"></span>
+            <span data-open-status-text>Открыто до 05:00</span>
+          </p>
+
+          <h1 id="hero-title" class="hero-title hero-rise mt-6" style="--delay: 80ms" data-i18n="hero.title">
+            Сочный настоящий шашлык на углях в Самарканде
+          </h1>
+
+          <p class="hero-rise mt-6 max-w-xl text-lg leading-relaxed text-gray-300 md:text-xl" style="--delay: 160ms" data-i18n="hero.text">
+            Маринуем мясо по своему рецепту и жарим на живых углях. Привезём горячим или накроем стол в зале.
+          </p>
+
+          <div class="hero-rise mt-8 flex flex-col gap-4 sm:flex-row" style="--delay: 240ms">
+            <a href="#menu" class="btn btn-gold h-14 px-8 text-base" data-i18n="hero.ctaMenu">Смотреть меню</a>
+            <button type="button" class="btn btn-ghost h-14 px-8 text-base" data-action="open-booking" data-i18n="hero.ctaBook">Забронировать стол</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         МЕНЮ
+         Все категории идут одной лентой. Липкая панель категорий
+         подсвечивает текущий раздел при прокрутке (scrollspy).
+         Карточки рендерятся из menu-data.js (см. app.js → renderMenu).
+         ==================================================================== -->
+    <section id="menu" class="pt-16 md:pt-24" aria-labelledby="menu-title">
+      <div class="mx-auto max-w-7xl px-4 md:px-8">
+        <div class="max-w-2xl" data-reveal>
+          <h2 id="menu-title" class="section-title" tabindex="-1" data-i18n="menu.title">Меню</h2>
+          <p class="mt-4 text-base leading-relaxed text-gray-300 md:text-lg" data-i18n="menu.text">
+            Цены указаны за порцию. Шашлык начинаем жарить после заказа, это 15–20 минут.
+          </p>
+        </div>
+      </div>
+
+      <!-- Липкая панель категорий -->
+      <nav id="category-nav" class="category-nav sticky top-16 z-30 mt-8" data-i18n-aria="menu.categories" aria-label="Категории меню">
+        <div class="mx-auto max-w-7xl">
+          <ul id="category-list" class="chips-track no-scrollbar flex gap-2 overflow-x-auto px-4 py-2 md:px-8"></ul>
+        </div>
+      </nav>
+
+      <div id="menu-sections" class="mx-auto max-w-7xl px-4 pb-16 md:px-8 md:pb-24">
+        <noscript>
+          <p class="mt-8 text-gray-300">
+            Включите JavaScript, чтобы увидеть меню и оформить заказ. Или позвоните нам:
+            <a class="text-gold underline" href="tel:+998660000000">+998 66 000 00 00</a>
+          </p>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         О НАС / ПРЕИМУЩЕСТВА
+         Фото в форме арки — отсылка к порталам Регистана и куполу на логотипе.
+         ==================================================================== -->
+    <section id="about" class="border-t border-white/5 py-16 md:py-24" aria-labelledby="about-title">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 md:px-8 lg:grid-cols-12 lg:gap-16">
+        <figure class="arch-frame w-full max-w-md lg:col-span-5" data-reveal>
+          <img class="arch-image aspect-[4/5] w-full object-cover"
+               src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=800&q=70&fm=webp"
+               width="800" height="1000" loading="lazy" decoding="async"
+               alt="Зал ресторана Ikrom Shashlik вечером" data-i18n-alt="about.imageAlt">
+        </figure>
+
+        <div class="lg:col-span-7" data-reveal>
+          <h2 id="about-title" class="section-title" data-i18n="about.title">Почему к нам возвращаются</h2>
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-gray-300 md:text-lg" data-i18n="about.text">
+            В Ikrom Shashlik всё начинается с мангала. Мясо маринуется с вечера, угли разжигаем до открытия,
+            а шампуры снимаем с огня, когда шашлык ещё сочный внутри.
+          </p>
+
+          <ul class="mt-12 grid gap-8 sm:grid-cols-2">
+            <li class="feature">
+              <span class="feature__icon"><svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-leaf" /></svg></span>
+              <div>
+                <h3 class="feature__title" data-i18n="about.f1Title">Свежее мясо каждый день</h3>
+                <p class="feature__text" data-i18n="about.f1Text">Баранину и говядину берём у проверенных фермеров и не замораживаем.</p>
+              </div>
+            </li>
+            <li class="feature">
+              <span class="feature__icon"><svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-flame" /></svg></span>
+              <div>
+                <h3 class="feature__title" data-i18n="about.f2Title">Только живые угли</h3>
+                <p class="feature__text" data-i18n="about.f2Text">Никаких газовых грилей: дымок и румяная корочка, как принято в Самарканде.</p>
+              </div>
+            </li>
+            <li class="feature">
+              <span class="feature__icon"><svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-moon" /></svg></span>
+              <div>
+                <h3 class="feature__title" data-i18n="about.f3Title">Открыты до 05:00</h3>
+                <p class="feature__text" data-i18n="about.f3Text">Поздний ужин или ночной заказ: кухня работает каждый день без выходных.</p>
+              </div>
+            </li>
+            <li class="feature">
+              <span class="feature__icon"><svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-box" /></svg></span>
+              <div>
+                <h3 class="feature__title" data-i18n="about.f4Title">Привозим горячим</h3>
+                <p class="feature__text" data-i18n="about.f4Text">Упаковываем в термобоксы, чтобы шашлык доехал до вас таким же сочным.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         КОНТАКТЫ И ГЕОЛОКАЦИЯ
+         Список филиалов (из config.js) + карта Яндекса выбранного филиала.
+         ==================================================================== -->
+    <section id="contacts" class="border-t border-white/5 py-16 md:py-24" aria-labelledby="contacts-title">
+      <div class="mx-auto max-w-7xl px-4 md:px-8">
+        <div class="max-w-2xl" data-reveal>
+          <h2 id="contacts-title" class="section-title" data-i18n="contacts.title">Адреса в Самарканде</h2>
+          <p class="mt-4 text-base leading-relaxed text-gray-300 md:text-lg" data-i18n="contacts.text">Выберите филиал, чтобы увидеть его на карте.</p>
+        </div>
+
+        <div class="mt-12 grid gap-8 lg:grid-cols-12" data-reveal>
+          <div class="flex flex-col gap-4 lg:col-span-5">
+            <ul id="branch-list" class="flex flex-col gap-4"></ul>
+
+            <!-- Часы работы и телефон -->
+            <div class="panel flex flex-col gap-4 p-6">
+              <div class="flex items-start gap-4">
+                <span class="feature__icon"><svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-clock" /></svg></span>
+                <div>
+                  <h3 class="font-bold" data-i18n="contacts.hoursTitle">Часы работы</h3>
+                  <p class="mt-2 text-gray-300" data-i18n="contacts.daily">Каждый день, 10:00 – 05:00</p>
+                  <p class="status-pill status-pill--plain mt-2" data-open-status>
+                    <span class="status-pill__dot" aria-hidden="true"></span>
+                    <span data-open-status-text>Открыто до 05:00</span>
+                  </p>
+                </div>
+              </div>
+              <a href="tel:+998660000000" class="btn btn-ghost h-12 w-full gap-2 text-base" data-phone-link>
+                <svg class="icon h-5 w-5 text-gold" aria-hidden="true"><use href="#i-phone" /></svg>
+                <span data-phone-text>+998 66 000 00 00</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <div class="map-frame">
+              <iframe id="branch-map" class="h-full w-full" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Карта"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       ПОДВАЛ
+       ====================================================================== -->
+  <footer class="border-t border-white/5 py-12 md:py-16">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 md:grid-cols-3 md:px-8">
+      <div>
+        <a href="#top" class="logo inline-flex items-center gap-2" data-i18n-aria="nav.home" aria-label="Ikrom Shashlik, на главную">
+          <svg class="h-10 w-10" aria-hidden="true"><use href="#logo-dome" /></svg>
+          <span class="flex flex-col leading-none">
+            <span class="text-lg font-extrabold tracking-tight">Ikrom</span>
+            <span class="logo__sub gold-text">Shashlik</span>
+          </span>
+        </a>
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-gray-400" data-i18n="footer.text">Шашлык на живых углях в Самарканде.</p>
+      </div>
+
+      <nav aria-labelledby="footer-nav-title">
+        <h2 id="footer-nav-title" class="text-sm font-bold text-gray-400" data-i18n="footer.nav">Разделы</h2>
+        <ul class="mt-4 flex flex-col gap-2 text-sm">
+          <li><a href="#menu" class="footer-link" data-i18n="nav.menu">Меню</a></li>
+          <li><a href="#about" class="footer-link" data-i18n="nav.about">О нас</a></li>
+          <li><a href="#contacts" class="footer-link" data-i18n="nav.contacts">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="text-sm font-bold text-gray-400" data-i18n="footer.contacts">Связаться</h2>
+        <ul class="mt-4 flex flex-col gap-2 text-sm">
+          <li><a href="tel:+998660000000" class="footer-link" data-phone-link><span data-phone-text>+998 66 000 00 00</span></a></li>
+          <li class="text-gray-300" data-i18n="contacts.daily">Каждый день, 10:00 – 05:00</li>
+        </ul>
+        <ul id="social-links" class="mt-4 flex gap-2"></ul>
+      </div>
+    </div>
+
+    <p class="mx-auto mt-12 max-w-7xl px-4 text-xs text-gray-500 md:px-8" data-i18n="footer.rights">© 2026 Ikrom Shashlik</p>
+  </footer>
+
+  <!-- ======================================================================
+       НИЖНИЙ БАР (только телефон): Меню · Корзина · Контакты
+       ====================================================================== -->
+  <nav class="bottom-nav md:hidden" data-i18n-aria="nav.quick" aria-label="Быстрая навигация">
+    <a href="#menu" class="bottom-nav__item" data-bottom-link="menu">
+      <svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-book" /></svg>
+      <span data-i18n="nav.menu">Меню</span>
+    </a>
+
+    <button type="button" class="bottom-nav__item bottom-nav__cart" data-action="open-cart" data-i18n-aria="header.cart" aria-label="Открыть корзину">
+      <span class="relative">
+        <svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-bag" /></svg>
+        <span class="cart-badge" data-cart-count hidden>0</span>
+      </span>
+      <span data-cart-label>Корзина</span>
+    </button>
+
+    <a href="#contacts" class="bottom-nav__item" data-bottom-link="contacts">
+      <svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-pin" /></svg>
+      <span data-i18n="nav.contacts">Контакты</span>
+    </a>
+  </nav>
+
+  <!-- Озвучка изменений корзины для экранных читалок -->
+  <div id="live-region" class="sr-only" aria-live="polite"></div>
+
+  <!-- Общая подложка для корзины и формы брони -->
+  <div id="backdrop" class="backdrop" aria-hidden="true"></div>
+
+  <!-- ======================================================================
+       КОРЗИНА (выдвижная панель)
+       Телефон — шторка снизу, десктоп — панель справа.
+       Три состояния: пустая корзина / позиции и оформление / заказ отправлен.
+       ====================================================================== -->
+  <aside id="cart-drawer" class="sheet sheet--side" role="dialog" aria-modal="true" aria-labelledby="cart-title" tabindex="-1" inert>
+    <div class="sheet__handle md:hidden" aria-hidden="true"></div>
+
+    <header class="flex items-center justify-between gap-4 border-b border-white/5 px-6 py-4">
+      <h2 id="cart-title" class="text-xl font-extrabold tracking-tight" data-i18n="cart.title">Ваш заказ</h2>
+      <div class="flex items-center gap-2">
+        <button type="button" id="cart-clear" class="link-quiet text-sm" data-action="clear-cart" data-i18n="cart.clear" hidden>Очистить</button>
+        <button type="button" class="btn-icon" data-action="close-overlay" data-i18n-aria="cart.close" aria-label="Закрыть">
+          <svg class="icon h-5 w-5" aria-hidden="true"><use href="#i-close" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Состояние 1: корзина пуста -->
+    <div id="cart-empty" class="flex flex-1 flex-col items-start justify-center gap-4 px-6 py-12">
+      <span class="feature__icon"><svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-bag" /></svg></span>
+      <h3 class="text-lg font-bold" data-i18n="cart.emptyTitle">Корзина пока пуста</h3>
+      <p class="text-gray-300" data-i18n="cart.emptyText">Добавьте блюда из меню, и они появятся здесь.</p>
+      <button type="button" class="btn btn-gold mt-4 h-12 px-6" data-action="go-to-menu" data-i18n="cart.emptyCta">Открыть меню</button>
+    </div>
+
+    <!-- Состояние 2: позиции + оформление -->
+    <form id="cart-form" class="flex min-h-0 flex-1 flex-col" novalidate hidden>
+      <div class="flex-1 overflow-y-auto overscroll-contain px-6 pb-8">
+        <ul id="cart-items" class="divide-y divide-white/5"></ul>
+
+        <fieldset class="mt-6">
+          <legend class="field__label" data-i18n="cart.howTo">Как получить заказ</legend>
+          <div class="mt-2 grid grid-cols-2 gap-2">
+            <label class="choice">
+              <input type="radio" name="type" value="pickup" class="sr-only" checked>
+              <span data-i18n="cart.pickup">Самовывоз</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="delivery" class="sr-only">
+              <span data-i18n="cart.delivery">Доставка</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="mt-6 flex flex-col gap-4">
+          <div class="field" data-field="branch" data-show-for="pickup">
+            <label for="cart-branch" class="field__label" data-i18n="cart.branch">Филиал</label>
+            <select id="cart-branch" name="branch" class="field__input field__select" data-branch-select></select>
+          </div>
+
+          <div class="field" data-field="address" data-show-for="delivery" hidden>
+            <label for="cart-address" class="field__label" data-i18n="cart.address">Адрес доставки</label>
+            <input id="cart-address" name="address" class="field__input" autocomplete="street-address" data-i18n-placeholder="cart.addressPh" placeholder="Улица, дом, подъезд, этаж">
+            <p class="field__error" id="cart-address-error" hidden></p>
+          </div>
+
+          <div class="field" data-field="name">
+            <label for="cart-name" class="field__label" data-i18n="form.name">Имя</label>
+            <input id="cart-name" name="name" class="field__input" autocomplete="given-name" data-customer="name">
+            <p class="field__error" id="cart-name-error" hidden></p>
+          </div>
+
+          <div class="field" data-field="phone">
+            <label for="cart-phone" class="field__label" data-i18n="form.phone">Телефон</label>
+            <input id="cart-phone" name="phone" type="tel" inputmode="tel" class="field__input" autocomplete="tel" placeholder="+998" data-phone-input data-customer="phone">
+            <p class="field__error" id="cart-phone-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="cart-comment" class="field__label">
+              <span data-i18n="cart.comment">Комментарий</span>
+              <span class="field__hint" data-i18n="form.optional">необязательно</span>
+            </label>
+            <textarea id="cart-comment" name="comment" rows="2" class="field__input field__textarea" data-i18n-placeholder="cart.commentPh" placeholder="Например: без лука, позвонить заранее"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Итоги и кнопка отправки: всегда видны внизу панели -->
+      <footer class="sheet__footer border-t border-white/5 px-6 py-4">
+        <dl class="flex flex-col gap-2 text-sm">
+          <div class="flex justify-between text-gray-300">
+            <dt data-i18n="cart.subtotal">Блюда</dt>
+            <dd id="cart-subtotal">0 UZS</dd>
+          </div>
+          <div class="flex justify-between text-gray-300" id="cart-delivery-row" hidden>
+            <dt data-i18n="cart.deliveryFee">Доставка</dt>
+            <dd id="cart-delivery-fee">0 UZS</dd>
+          </div>
+          <p id="cart-free-hint" class="text-xs text-gold" hidden></p>
+          <div class="flex justify-between text-base font-extrabold">
+            <dt data-i18n="cart.total">Итого</dt>
+            <dd id="cart-total" class="gold-text">0 UZS</dd>
+          </div>
+        </dl>
+
+        <p id="cart-error" class="form-alert mt-4" role="alert" hidden></p>
+
+        <button type="submit" id="cart-submit" class="btn btn-gold btn--split mt-4 h-14 w-full px-6 text-base">
+          <span data-submit-label data-i18n="cart.submit">Отправить заказ</span>
+          <span id="cart-submit-total" class="font-extrabold"></span>
+        </button>
+        <p class="mt-2 text-center text-xs text-gray-400" data-i18n="cart.payNote">Оплата наличными или картой при получении.</p>
+      </footer>
+    </form>
+
+    <!-- Состояние 3: заказ отправлен -->
+    <div id="cart-success" class="flex flex-1 flex-col items-start justify-center gap-4 px-6 py-12" role="status" hidden>
+      <span class="success-mark"><svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-check" /></svg></span>
+      <h3 class="text-xl font-extrabold" data-i18n="cart.successTitle">Заказ отправлен</h3>
+      <p class="text-gray-300" id="cart-success-text"></p>
+      <button type="button" class="btn btn-gold mt-4 h-12 px-6" data-action="go-to-menu" data-i18n="cart.successCta">Вернуться в меню</button>
+    </div>
+  </aside>
+
+  <!-- ======================================================================
+       БРОНЬ СТОЛА (модальное окно)
+       Телефон — шторка снизу, десктоп — окно по центру.
+       ====================================================================== -->
+  <div id="booking-modal" class="sheet sheet--center" role="dialog" aria-modal="true" aria-labelledby="booking-title" tabindex="-1" inert>
+    <div class="sheet__handle md:hidden" aria-hidden="true"></div>
+
+    <header class="flex items-start justify-between gap-4 px-6 pb-2 pt-6">
+      <div>
+        <h2 id="booking-title" class="text-2xl font-extrabold tracking-tight" data-i18n="book.title">Бронь стола</h2>
+        <p id="booking-intro" class="mt-2 text-sm leading-relaxed text-gray-300" data-i18n="book.text">Оставьте контакты, и администратор перезвонит, чтобы подтвердить бронь.</p>
+      </div>
+      <button type="button" class="btn-icon shrink-0" data-action="close-overlay" data-i18n-aria="cart.close" aria-label="Закрыть">
+        <svg class="icon h-5 w-5" aria-hidden="true"><use href="#i-close" /></svg>
+      </button>
+    </header>
+
+    <form id="booking-form" class="flex min-h-0 flex-1 flex-col" novalidate>
+      <div class="flex-1 overflow-y-auto overscroll-contain px-6 py-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="field col-span-2 sm:col-span-1" data-field="name">
+            <label for="book-name" class="field__label" data-i18n="form.name">Имя</label>
+            <input id="book-name" name="name" class="field__input" autocomplete="given-name" data-customer="name">
+            <p class="field__error" id="book-name-error" hidden></p>
+          </div>
+          <div class="field col-span-2 sm:col-span-1" data-field="phone">
+            <label for="book-phone" class="field__label" data-i18n="form.phone">Телефон</label>
+            <input id="book-phone" name="phone" type="tel" inputmode="tel" class="field__input" autocomplete="tel" placeholder="+998" data-phone-input data-customer="phone">
+            <p class="field__error" id="book-phone-error" hidden></p>
+          </div>
+          <div class="field" data-field="date">
+            <label for="book-date" class="field__label" data-i18n="book.date">Дата</label>
+            <input id="book-date" name="date" type="date" class="field__input">
+            <p class="field__error" id="book-date-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="book-time" class="field__label" data-i18n="book.time">Время</label>
+            <select id="book-time" name="time" class="field__input field__select"></select>
+          </div>
+          <div class="field">
+            <label for="book-guests" class="field__label" data-i18n="book.guests">Гостей</label>
+            <select id="book-guests" name="guests" class="field__input field__select"></select>
+          </div>
+          <div class="field">
+            <label for="book-branch" class="field__label" data-i18n="book.branch">Филиал</label>
+            <select id="book-branch" name="branch" class="field__input field__select" data-branch-select></select>
+          </div>
+          <div class="field col-span-2">
+            <label for="book-comment" class="field__label">
+              <span data-i18n="book.comment">Пожелания</span>
+              <span class="field__hint" data-i18n="form.optional">необязательно</span>
+            </label>
+            <textarea id="book-comment" name="comment" rows="2" class="field__input field__textarea" data-i18n-placeholder="book.commentPh" placeholder="Например: день рождения, нужен детский стул"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <footer class="sheet__footer px-6 pb-6 pt-2">
+        <p id="booking-error" class="form-alert mb-4" role="alert" hidden></p>
+        <button type="submit" id="booking-submit" class="btn btn-gold h-14 w-full text-base">
+          <span data-submit-label data-i18n="book.submit">Забронировать</span>
+        </button>
+      </footer>
+    </form>
+
+    <div id="booking-success" class="flex flex-col items-start gap-4 px-6 pb-8 pt-4" role="status" hidden>
+      <span class="success-mark"><svg class="icon h-6 w-6" aria-hidden="true"><use href="#i-check" /></svg></span>
+      <h3 class="text-xl font-extrabold" data-i18n="book.successTitle">Заявка на бронь отправлена</h3>
+      <p class="text-gray-300" id="booking-success-text"></p>
+      <button type="button" class="btn btn-gold mt-4 h-12 px-6" data-action="close-overlay" data-i18n="book.done">Готово</button>
+    </div>
+  </div>
+
+  <!-- Скрипты подключаются по порядку: данные → состояние → интерфейс -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/menu-data.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
